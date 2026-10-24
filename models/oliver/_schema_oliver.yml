@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: oliver_dim_customer
+    description: "Dimension table for customers of Oliver's business"
+  - name: oliver_dim_date
+    description: "Dimension table for dates"
+  - name: oliver_dim_employee
+    description: "Dimension table for employees at Oliver's business"
+  - name: oliver_dim_product
+    description: "Dimension table for products sold at Oliver's business"
+  - name: oliver_dim_store
+    description: "Dimension table for storefronts of Oliver's business"
+  - name: fact_sales
+    description: "Fact table for a given line item on an order"
+    columns:
+      - name: customer_key
+        description: foreign key inherited from oliver_dim_customer
+      - name: date_key
+        description: foreign key inherited from oliver_dim_date
+      - name: store_key
+        description: foreign key inherited from oliver_dim_store
+      - name: product_key
+        description: foreign key inherited from oliver_dim_product
+      - name: employee_key
+        description: foreign key inherited from oliver_dim_employee
+      - name: quantity
+        description: "Number of products sold on a given orderline. Inherited from original ORDERLINE table."
+      - name: dollars_sold
+        description: "Total $ amount on a given order. Inherited from original ORDERS table."
+      - name: unit_price
+        description: "Price of a single product on a given orderline. Inherited from original ORDERLINE table."
