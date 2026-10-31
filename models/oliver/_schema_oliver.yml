@@ -30,3 +30,5 @@ models:
         description: "Total $ amount on a given order. Inherited from original ORDERS table."
       - name: unit_price
         description: "Price of a single product on a given orderline. Inherited from original ORDERLINE table."
+  - name: fact_certification
+    description: "Fact table for a given certification completion by a given employee on a given date. Includes the cert name and cost"
