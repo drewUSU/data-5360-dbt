@@ -16,5 +16,7 @@ select
     lastname,
     email,
     phone
-from  {{ source('insurance_landing', 'agents') }}-- not just a table name, now dbt knows the model here is 
+from  {{ source('insurance_landing', 'agents') }}
+
+-- not just a table name, now dbt knows the model here is 
 -- dependent on this source (specified in our _src_insurance.yml as our specific 4 tables in our snowflake db)
