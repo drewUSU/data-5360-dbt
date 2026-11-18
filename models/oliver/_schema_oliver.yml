@@ -3,12 +3,31 @@ version: 2
 models:
   - name: oliver_dim_customer
     description: "Dimension table for customers of Oliver's business"
+    columns:
+      - name: customer_key
+        tests:
+          - unique
   - name: oliver_dim_date
     description: "Dimension table for dates"
   - name: oliver_dim_employee
     description: "Dimension table for employees at Oliver's business"
+    columns:
+      - name: employee_key
+        tests:
+          - not_null
   - name: oliver_dim_product
     description: "Dimension table for products sold at Oliver's business"
+    columns:
+      - name: product_name
+        tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - "Small Popcorn"
+                  - "Gummy Bears"
+                  - "Small Coffee"
+                  - "Chocolate Bar"
+                  - "Marshmallows"
   - name: oliver_dim_store
     description: "Dimension table for storefronts of Oliver's business"
   - name: fact_sales
@@ -16,6 +35,11 @@ models:
     columns:
       - name: customer_key
         description: foreign key inherited from oliver_dim_customer
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('oliver_dim_customer')
+                field: customer_key
       - name: date_key
         description: foreign key inherited from oliver_dim_date
       - name: store_key
